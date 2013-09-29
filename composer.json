@@ -1,0 +1,37 @@
+{
+    "name": "wemakecustom/symfony-acl-bundle",
+    "type": "library",
+    "description": "Symfony ACL Bundle",
+    "keywords": [],
+    "homepage": "http://symfony.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabien Potencier",
+            "email": "fabien@symfony.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "http://symfony.com/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/security-core": "~2.4"
+    },
+    "require-dev": {
+        "doctrine/common": "~2.2",
+        "doctrine/dbal": "~2.2",
+        "psr/log": "~1.0"
+    },
+    "suggest": {
+        "symfony/class-loader": "",
+        "symfony/finder": "",
+        "doctrine/dbal": "to use the built-in ACL implementation"
+    },
+    "autoload": {
+        "psr-0": { "WMC\\Symfony\\AclBundle\\": "src" }
+    },
+    "target-dir": "Symfony/Component/Security/Acl",
+    "minimum-stability": "dev"
+}
