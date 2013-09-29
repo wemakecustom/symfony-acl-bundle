@@ -23,5 +23,5 @@ interface AclProviderInterface
      * for ACEs. This could mean either using a local cache or directly querying
      * the storage backend, whichever is more adapted to your use case.
      */
-    public function searchAcls(array $grantees = array(), array $targets = array(), array $permissions = array());
+    public function searchAces(array $grantees = array(), array $targets = array(), array $permissions = array());
 }
