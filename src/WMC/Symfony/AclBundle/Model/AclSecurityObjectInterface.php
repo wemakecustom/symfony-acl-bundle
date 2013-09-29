@@ -16,5 +16,5 @@ interface AclSecurityObjectInterface
      *
      * @return string
      */
-    public function getObjectIdentifier();
+    public function getSecurityObjectIdentifier();
 }

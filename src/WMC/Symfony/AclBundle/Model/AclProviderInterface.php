@@ -4,13 +4,38 @@ namespace WMC\Symfony\AclBundle\Model;
 
 /**
  * Provides a common interface for retrieving ACLs.
- *
- * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
 interface AclProviderInterface
 {
     /**
-     * Returns the ACEs matching for the pair Identity/Object
+     * Convert a Security object (potentiel grantee) to a
+     * AclSecurityIdentityInterface
+     *
+     * Accepts:
+     *  - null (equivalent to anonymous token)
+     *  - Role name
+     *  - Role instance
+     *  - Token (incl. anonymous)
+     *  - User
+     *  - AclSecurityIdentityInterface
+     */
+    public function extractSecurityIdentity($grantee);
+
+    /**
+     * Convert a domain object (potentiel target) to a
+     * AclTargetObjectInterface
+     *
+     * Accepts:
+     *  - class name
+     *  - object
+     *  - array(object, field name)
+     *  - array(class name, field name)
+     *  - AclTargetObjectInterface
+     */
+    public function extractTargetIdentity($target);
+
+    /**
+     * Returns the ACEs matching for the pair Grantee/Target
      *
      * @return EntryInterface[]
      */
