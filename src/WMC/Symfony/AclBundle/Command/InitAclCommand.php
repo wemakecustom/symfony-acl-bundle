@@ -26,7 +26,8 @@ class InitAclCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('init:acl')
+            ->setName('acl:init')
+            ->setAliases(array('init:acl'))
             ->setDescription('Mounts ACL tables in the database')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command mounts ACL tables in the database.
