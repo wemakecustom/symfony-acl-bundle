@@ -4,7 +4,6 @@ namespace WMC\Symfony\AclBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Acl\Dbal\Schema;
 
 /**
  * @ORM\Table(name="acl_object_identities")
@@ -44,21 +43,21 @@ class AclObjectIdentity
      * @ORM\ManyToOne(targetEntity="AclClass")
      * @ORM\JoinColumn(nullable=false)
      *
-     * @var  AclClass
+     * @var AclClass
      */
     private $class;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
      *
-     * @var  string
+     * @var string
      */
     private $object_identifier;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      *
-     * @var  string
+     * @var string
      */
     private $field_name;
 

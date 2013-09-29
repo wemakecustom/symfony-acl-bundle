@@ -3,7 +3,6 @@
 namespace WMC\Symfony\AclBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Acl\Dbal\Schema;
 
 /**
  * @ORM\Table(name="acl_security_identities")
@@ -16,7 +15,7 @@ class AclSecurityIdentity
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      *
-     * @var  integer
+     * @var integer
      */
     private $id;
 
@@ -24,7 +23,7 @@ class AclSecurityIdentity
      * @ORM\ManyToOne(targetEntity="AclClass")
      * @ORM\JoinColumn(nullable=false)
      *
-     * @var  AclClass
+     * @var AclClass
      */
     private $class;
 

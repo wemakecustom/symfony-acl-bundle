@@ -3,7 +3,6 @@
 namespace WMC\Symfony\AclBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Acl\Dbal\Schema;
 
 /**
  * @ORM\Table(name="acl_entries")

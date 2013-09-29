@@ -3,7 +3,6 @@
 namespace WMC\Symfony\AclBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Acl\Dbal\Schema;
 
 /**
  * @ORM\Table(name="acl_classes")
@@ -16,14 +15,14 @@ class AclClass
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      *
-     * @var  integer
+     * @var integer
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=200)
      *
-     * @var  string
+     * @var string
      */
     private $name;
 }
