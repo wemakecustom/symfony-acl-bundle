@@ -18,7 +18,7 @@ abstract class AbstractFlatPermissionMap implements PermissionMapInterface
         }
 
         if (!isset($this->flat_map[$permission])) {
-            return null;
+            return array();
         }
 
         return $this->flat_map[$permission];
