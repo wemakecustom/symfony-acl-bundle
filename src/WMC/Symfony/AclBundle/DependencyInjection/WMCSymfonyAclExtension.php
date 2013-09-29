@@ -21,5 +21,9 @@ class WMCSymfonyAclExtension extends Extension
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        if ($manager = $container->getParameter('wmc.acl.entity_manager.name')) {
+            $container->setAlias("wmc.acl.entity_manager", "doctrine.orm.${manager}_entity_manager");
+        }
     }
 }

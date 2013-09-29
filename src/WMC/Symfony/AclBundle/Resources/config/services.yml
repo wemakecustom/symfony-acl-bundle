@@ -1,4 +1,5 @@
 parameters:
+    wmc.acl.entity_manager.name: default
     # wmc.acl.provider.class: WMC\Symfony\AclBundle\
     wmc.acl.voter.class: WMC\Symfony\AclBundle\Voter\AclVoter
     wmc.acl.permission.map.class: WMC\Symfony\AclBundle\Permission\BasicPermissionMap
