@@ -5,7 +5,7 @@ namespace WMC\Symfony\AclBundle\Model;
 /**
  * @author Mathieu Lemoine <mathieu@wemakecustom.com>
  */
-interface TargetIdentityInterface
+interface AclTargetIdentityInterface
 {
     /**
      * Returns the name of the class targeted
@@ -19,12 +19,12 @@ interface TargetIdentityInterface
      *
      * @return null|string
      */
-    public function getId();
+    public function getObjectIdentifier();
 
     /**
      * Returns the name of the target field.
      *
      * @return null|string
      */
-    public function getObjectIdentifier();
+    public function getFieldName();
 }

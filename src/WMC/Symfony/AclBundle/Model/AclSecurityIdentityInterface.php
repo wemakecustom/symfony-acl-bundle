@@ -9,13 +9,27 @@ namespace WMC\Symfony\AclBundle\Model;
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-interface SecurityIdentityInterface
+interface AclSecurityIdentityInterface
 {
+    /**
+     * Returns the name of the class targeted
+     *
+     * @return string
+     */
+    public function getClassName();
+
+    /**
+     * Returns the ID of the security object
+     *
+     * @return string
+     */
+    public function getObjectIdentifier();
+
     /**
      * This method is used to compare two security identities in order to
      * not rely on referential equality.
      *
      * @param SecurityIdentityInterface $identity
      */
-    public function equals(SecurityIdentityInterface $identity);
+    public function equals(AclSecurityIdentityInterface $identity);
 }

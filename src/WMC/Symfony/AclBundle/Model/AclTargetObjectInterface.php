@@ -9,7 +9,7 @@ namespace WMC\Symfony\AclBundle\Model;
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-interface DomainObjectInterface
+interface AclTargetObjectInterface
 {
     /**
      * Returns a unique identifier for this domain object.

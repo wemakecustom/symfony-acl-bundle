@@ -7,7 +7,7 @@ namespace WMC\Symfony\AclBundle\Model;
  *
  * @author Mathieu Lemoine <mathieu@wemakecustom.com>
  */
-interface EntryInterface extends \Serializable
+interface AclEntryInterface
 {
     /**
      * The primary key of this ACE
@@ -21,14 +21,14 @@ interface EntryInterface extends \Serializable
      *
      * @return SecurityIdentityInterface
      */
-    public function getGrantee();
+    public function getSecurityIdentity();
 
     /**
      * The target of this ACE
      *
      * @return TargetIdentityInterface
      */
-    public function getTarget();
+    public function getTargetIdentity();
 
     /**
      * The permission label of this ACE
