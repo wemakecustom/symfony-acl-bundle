@@ -44,6 +44,24 @@ abstract class AbstractAclProvider implements AclProviderInterface
             return $target;
         }
 
+        if (is_array($target)) {
+            if (count($target) != 2) {
+                $e = new InvalidAclTargetObjectException('compound target objects require exactly 2 components (object and field or class and field).');
+                $e->setTargetObject($grantee);
+                throw $e;
+            }
 
+            if (is_string($target[0])) {
+                return AclClassFieldTargetIdentity::getInstance($target[0], $target[1]);
+            } else {
+                return new AclObjectFieldTargetIdentity($target[0], $target[1]);
+            }
+        }
+
+        if (is_string($target)) {
+            return AclClassTargetIdentity::getInstance($target);
+        } else {
+            return new AclObjectTargetIdentity($target);
+        }
     }
 }
