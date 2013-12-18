@@ -68,7 +68,7 @@ EOF
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            /* @var $em \Doctrine\ORM\EntityManager */
+            /** @var $em \Doctrine\ORM\EntityManager */
             $em = $this->getContainer()->get('wmc.acl.entity_manager');
 
             $metadatas = $this->getMetadatas($em);

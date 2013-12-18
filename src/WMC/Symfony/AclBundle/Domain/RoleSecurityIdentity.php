@@ -31,7 +31,7 @@ class RoleSecurityIdentity implements AclSecurityIdentityInterface
         }
 
         return !isset(static::$instances[$role_name])
-            ? static::$instances[$role_name] = new self($role_name)
+            ? static::$instances[$role_name] = new static($role_name)
             : static::$instances[$role_name];
     }
 

@@ -29,16 +29,16 @@ class AclObjectTargetIdentity implements AclTargetIdentityInterface
                 $this->object_id = $object->getTargetObjectIdentifier();
             } elseif (method_exists($object, 'getId')) {
                 $this->object_id = $object->getId();
+            } else {
+                $e = new InvalidAclTargetObjectException('ACLs can only be attached to an object if it either implements the AclSecurityObjectInterface, or has a method named "getId".');
+                $e->setTargetObject($object);
+                throw $e;
             }
         } catch (\InvalidArgumentException $invalid) {
             $e = new InvalidAclTargetObjectException($invalid->getMessage(), 0, $invalid);
             $e->setTargetObject($object);
             throw $e;
         }
-
-        $e = new InvalidAclTargetObjectException('ACLs can only be attached to an object if it either implements the AclSecurityObjectInterface, or has a method named "getId".');
-        $e->setTargetObject($object);
-        throw $e;
     }
 
     public function getClassName()

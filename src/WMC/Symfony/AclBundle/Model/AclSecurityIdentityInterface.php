@@ -3,9 +3,9 @@
 namespace WMC\Symfony\AclBundle\Model;
 
 /**
- * This interface provides an additional level of indirection, so that
- * we can work with abstracted versions of security objects and do
- * not have to save the entire objects.
+ * This interface provides an additional level of indirection, so we can work
+ * with abstracted versions of security objects and do not have to save the
+ * entire objects.
  */
 interface AclSecurityIdentityInterface
 {

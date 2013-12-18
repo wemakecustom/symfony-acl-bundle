@@ -20,14 +20,14 @@ class AclClassTargetIdentity implements AclTargetIdentityInterface
     {
         if (!is_string($class_name)) {
             $e = new InvalidAclTargetObjectException('Class name must be a string.');
-            $e->setTargetObject($object);
+            $e->setTargetObject($class_name);
             throw $e;
         }
 
         $class_name = ClassUtils::getRealClass($class_name);
 
         return !isset(static::$instances[$class_name])
-            ? static::$instances[$class_name] = new self($class_name)
+            ? static::$instances[$class_name] = new static($class_name)
             : static::$instances[$class_name];
     }
 

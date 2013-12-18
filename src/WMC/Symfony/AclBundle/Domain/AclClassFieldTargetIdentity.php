@@ -27,21 +27,15 @@ class AclClassFieldTargetIdentity extends AclClassTargetIdentity implements AclT
         $class_name = ClassUtils::getRealClass($class_name);
 
         return !isset(static::$instances[$class_name][$field_name])
-            ? static::$instances[$class_name][$field_name] = new self($class_name, $field_name)
+            ? static::$instances[$class_name][$field_name] = new static($class_name, $field_name)
             : static::$instances[$class_name][$field_name];
     }
 
     protected $field_name;
 
-    public function __construct($class_name, $field_name)
+    protected function __construct($class_name, $field_name)
     {
         parent::__construct($class_name);
-
-        if (!is_string($field_name)) {
-            $e = new InvalidAclTargetObjectException('Field name must be a string.');
-            $e->setTargetObject(array($object, $field_name));
-            throw $e;
-        }
 
         $this->field_name = $field_name;
     }

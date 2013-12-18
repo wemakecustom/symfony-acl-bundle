@@ -2,7 +2,7 @@
 
 namespace Symfony\Component\Security\Acl\Permission;
 
-class BasicPermissionMap implements PermissionMapInterface
+class BasicPermissionMap extends AbstractFlatPermissionMap implements PermissionMapInterface
 {
     const PERMISSION_VIEW        = 'VIEW';
     const PERMISSION_EDIT        = 'EDIT';

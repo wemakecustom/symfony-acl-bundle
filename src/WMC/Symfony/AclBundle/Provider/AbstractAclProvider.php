@@ -2,7 +2,19 @@
 
 namespace WMC\Symfony\AclBundle\Provider;
 
-use WMC\Symfony\AclBundle\Model\AclMutableProviderInterface;
+use WMC\Symfony\AclBundle\Model\AclProviderInterface;
+
+use WMC\Symfony\AclBundle\Exception\InvalidAclSecurityObjectException;
+use WMC\Symfony\AclBundle\Exception\InvalidAclTargetObjectException;
+
+use WMC\Symfony\AclBundle\Domain\AnonymousSecurityIdentity;
+use WMC\Symfony\AclBundle\Domain\RoleSecurityIdentity;
+use WMC\Symfony\AclBundle\Domain\UserSecurityIdentity;
+
+use WMC\Symfony\AclBundle\Domain\AclClassFieldTargetIdentity;
+use WMC\Symfony\AclBundle\Domain\AclObjectFieldTargetIdentity;
+use WMC\Symfony\AclBundle\Domain\AclClassTargetIdentity;
+use WMC\Symfony\AclBundle\Domain\AclObjectTargetIdentity;
 
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Role\RoleInterface;
@@ -46,7 +58,7 @@ abstract class AbstractAclProvider implements AclProviderInterface
 
         if (is_array($target)) {
             if (count($target) != 2) {
-                $e = new InvalidAclTargetObjectException('compound target objects require exactly 2 components (object and field or class and field).');
+                $e = new InvalidAclTargetObjectException('Compound target objects require exactly 2 components (object and field or class and field).');
                 $e->setTargetObject($grantee);
                 throw $e;
             }
