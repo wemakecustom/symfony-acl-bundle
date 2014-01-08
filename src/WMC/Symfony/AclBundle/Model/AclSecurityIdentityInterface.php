@@ -9,6 +9,17 @@ namespace WMC\Symfony\AclBundle\Model;
  */
 interface AclSecurityIdentityInterface
 {
+    const KIND_ANONYMOUS = 'ANONYMOUS';
+    const KIND_ROLE      = 'ROLE';
+    const KIND_USER      = 'USER';
+
+    /**
+     * Returns the kind of SecurityObject (Anonymous, Role or User)
+     *
+     * @return string
+     */
+    public function getKind();
+
     /**
      * Returns the name of the class targeted
      *

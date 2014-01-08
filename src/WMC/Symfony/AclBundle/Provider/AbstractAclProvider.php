@@ -4,76 +4,34 @@ namespace WMC\Symfony\AclBundle\Provider;
 
 use WMC\Symfony\AclBundle\Model\AclProviderInterface;
 
-use WMC\Symfony\AclBundle\Exception\InvalidAclSecurityObjectException;
-use WMC\Symfony\AclBundle\Exception\InvalidAclTargetObjectException;
+use WMC\Symfony\AclBundle\Model\AclTargetIdentityFactoryInterface as TargetIdentityFactory;
+use WMC\Symfony\AclBundle\Model\AclSecurityIdentityFactoryInterface as SecurityIdentityFactory;
 
-use WMC\Symfony\AclBundle\Domain\AnonymousSecurityIdentity;
-use WMC\Symfony\AclBundle\Domain\RoleSecurityIdentity;
-use WMC\Symfony\AclBundle\Domain\UserSecurityIdentity;
-
-use WMC\Symfony\AclBundle\Domain\AclClassFieldTargetIdentity;
-use WMC\Symfony\AclBundle\Domain\AclObjectFieldTargetIdentity;
-use WMC\Symfony\AclBundle\Domain\AclClassTargetIdentity;
-use WMC\Symfony\AclBundle\Domain\AclObjectTargetIdentity;
-
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
-use Symfony\Component\Security\Core\Role\RoleInterface;
-
-use Symfony\Component\Security\Core\User\UserInterface;
-
-/**
- * Implements TargetIdentity and SecurityExtraction extraction from domain
- * objects.
- */
 abstract class AbstractAclProvider implements AclProviderInterface
 {
+    /**
+     * @var SecurityIdentityFactory
+     */
+    protected $securityIdentityFactory;
+
+    /**
+     * @var TargetIdentityFactory
+     */
+    protected $targetIdentityFactory;
+
+    public function __construct(SecurityIdentityFactory $securityIdentityFactory, TargetIdentityFactory $targetIdentityFactory)
+    {
+        $this->securityIdentityFactory = $securityIdentityFactory;
+        $this->targetIdentityFactory   = $targetIdentityFactory;
+    }
+
     public function extractSecurityIdentity($grantee)
     {
-        if ($grantee instanceof AclSecurityIdentityInterface) {
-            return $grantee;
-        }
-
-        if (null === $grantee || $grantee instanceof AnonymousToken) {
-            return AnonymousSecurityIdentity:getInstance();
-        }
-
-        if (is_string($grantee) || $grantee instanceof RoleInterface) {
-            return RoleSecurityIdentity::getInstance($grantee);
-        }
-
-        if ($grantee instanceof UserInterface) {
-            return new UserSecurityIdentity($grantee);
-        }
-
-        $e = new InvalidAclSecurityObjectException('This security object is not supported by this AclProvider');
-        $e->setSecurityObject($grantee);
-        throw $e;
+        return $this->securityIdentityFactory->extractSecurityIdentity($grantee);
     }
 
     public function extractTargetIdentity($target)
     {
-        if ($target instanceof AclTargetObjectInterface) {
-            return $target;
-        }
-
-        if (is_array($target)) {
-            if (count($target) != 2) {
-                $e = new InvalidAclTargetObjectException('Compound target objects require exactly 2 components (object and field or class and field).');
-                $e->setTargetObject($grantee);
-                throw $e;
-            }
-
-            if (is_string($target[0])) {
-                return AclClassFieldTargetIdentity::getInstance($target[0], $target[1]);
-            } else {
-                return new AclObjectFieldTargetIdentity($target[0], $target[1]);
-            }
-        }
-
-        if (is_string($target)) {
-            return AclClassTargetIdentity::getInstance($target);
-        } else {
-            return new AclObjectTargetIdentity($target);
-        }
+        return $this->targetIdentityFactory->extractTargetIdentity($target);
     }
 }

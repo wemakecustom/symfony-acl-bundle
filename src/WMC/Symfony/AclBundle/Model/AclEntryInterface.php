@@ -3,19 +3,12 @@
 namespace WMC\Symfony\AclBundle\Model;
 
 /**
- * This class represents an individual entry in the ACL list.
+ * This class represents an individual entry in an ACL.
  *
  * @author Mathieu Lemoine <mathieu@wemakecustom.com>
  */
 interface AclEntryInterface
 {
-    /**
-     * The primary key of this ACE
-     *
-     * @return integer
-     */
-    public function getId();
-
     /**
      * The grantee of this ACE
      *
