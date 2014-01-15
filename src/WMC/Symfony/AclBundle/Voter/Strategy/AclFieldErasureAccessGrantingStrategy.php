@@ -21,13 +21,13 @@ class AclFieldErasureAccessGrantingStrategy extends AclPlainAccessGrantingStrate
             return parent::isGranted($grantees, $target, $permissions, $fallbackVote);
         }
 
-        if (0 === count($this->aclProvider->searchAces(null, $target))) {
+        if ($this->isACLEmpty($grantees, $target)) {
             $target = null !== $target->getObjectIdentifier()
                 ? $this->targetFactory->createObjectIdentity(array($target->getClassName(), $target->getObjectIdentifier()))
                 : $this->targetFactory->createClassIdentity($target->getClassName());
         }
 
-        if (0 === count($this->aclProvider->searchAces(null, $target))) {
+        if ($this->isACLEmpty($grantees, $target)) {
             return $fallbackVote;
         }
 

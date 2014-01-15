@@ -30,7 +30,7 @@ class AclInheritanceAccessGrantingStrategy extends AclPlainAccessGrantingStrateg
         $factoryMethod = null === $target->getFieldName() ? 'createClassIdentity' : 'createClassFieldIdentity';
         $class = null;
 
-        while (0 === count($this->aclProvider->searchAces(null, array($target))) && false !== ($class = get_parent_class($target->getClassName()))) {
+        while ($this->isACLEmpty($grantees, $target) && false !== ($class = get_parent_class($target->getClassName()))) {
             $target = $this->targetFactory->$factoryMethod($class, $target->getFieldName());
         }
 

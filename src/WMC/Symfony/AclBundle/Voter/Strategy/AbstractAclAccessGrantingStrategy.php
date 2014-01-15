@@ -6,6 +6,7 @@ use Psr\Log\LoggerInterface as Logger;
 
 use WMC\Symfony\AclBundle\Model\AclAccessGrantingStrategyInterface;
 
+use WMC\Symfony\AclBundle\Model\AclTargetIdentityInterface as AclTargetIdentity;
 use WMC\Symfony\AclBundle\Model\AclTargetIdentityFactoryInterface as AclTargetIdentityFactory;
 
 use WMC\Symfony\AclBundle\Model\AclProviderInterface as AclProvider;
@@ -32,6 +33,11 @@ abstract class AbstractAclAccessGrantingStrategy implements AclAccessGrantingStr
         $this->aclProvider   = $aclProvider;
         $this->targetFactory = $targetFactory;
         $this->logger        = $logger;
+    }
+
+    protected function isACLEmpty(array $grantees, AclTargetIdentity $target)
+    {
+        return 0 === count($this->aclProvider->searchAces($grantees, $target));
     }
 
     protected function debug($message)

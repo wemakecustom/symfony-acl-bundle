@@ -81,7 +81,7 @@ class AclComplexAccessGrantingStrategy extends AclPlainAccessGrantingStrategy
 
         $this->markAsVisited($target, $visited);
 
-        if (0 !== count($this->aclProvider->searchAces(null, array($target)))) {
+        if (!$this->isACLEmpty($grantees, $target)) {
             return parent::isGranted($grantees, $target, $permissions, $fallbackVote);
         }
 

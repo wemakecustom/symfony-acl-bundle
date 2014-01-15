@@ -23,13 +23,13 @@ class AclMetaAccessGrantingStrategy extends AclPlainAccessGrantingStrategy
             return parent::isGranted($grantees, $target, $permissions, $fallbackVote);
         }
 
-        if (0 === count($this->aclProvider->searchAces(null, $target))) {
+        if ($this->isACLEmpty($grantees, $target)) {
             $target = null === $target->getFieldName()
                 ? $this->targetFactory->createClassIdentity($target->getClassName())
                 : $this->targetFactory->createClassFieldIdentity($target->getClassName(), $target->getFieldName());
         }
 
-        if (0 === count($this->aclProvider->searchAces(null, $target))) {
+        if ($this->isACLEmpty($grantees, $target)) {
             return $fallbackVote;
         }
 
