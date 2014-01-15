@@ -3,35 +3,36 @@
     "type": "library",
     "description": "Symfony ACL Bundle",
     "keywords": [],
-    "homepage": "http://symfony.com",
+    "homepage": "https://github.com/wemakecustom/symfony-acl-bundle",
     "license": "MIT",
     "authors": [
         {
-            "name": "Fabien Potencier",
-            "email": "fabien@symfony.com"
+            "name": "Mathieu Lemoine",
+            "email": "mathieu@wemakecustom.com"
         },
         {
-            "name": "Symfony Community",
-            "homepage": "http://symfony.com/contributors"
+            "name": "Sébastien Lavoie",
+            "homepage": "seb@wemakecustom.com"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/security-core": "~2.4"
+        "symfony/security-core": "~2.3"
     },
     "require-dev": {
         "doctrine/common": "~2.2",
-        "doctrine/dbal": "~2.2",
+        "doctrine/orm": "~2.2",
         "psr/log": "~1.0"
     },
     "suggest": {
+        "doctrine/orm": "To use the built-in ACL Provider",
+        "psr/log": ""
         "symfony/class-loader": "",
-        "symfony/finder": "",
-        "doctrine/dbal": "to use the built-in ACL implementation"
+        "symfony/console": "",
+        "symfony/dependency-injection": ""
     },
     "autoload": {
         "psr-0": { "WMC\\Symfony\\AclBundle\\": "src" }
     },
-    "target-dir": "Symfony/Component/Security/Acl",
     "minimum-stability": "dev"
 }
