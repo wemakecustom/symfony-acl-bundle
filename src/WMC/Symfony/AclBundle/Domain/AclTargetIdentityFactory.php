@@ -33,6 +33,13 @@ class AclTargetIdentityFactory implements AclTargetIdentityFactoryInterface
 
     protected function extractObjectIdentityFields($object)
     {
+        if (is_array($object)
+            && 2 === count($object)
+            && isset($object[0]) && is_string($object[0])
+            && isset($object[1]) && is_string($object[1])) {
+            return $object;
+        }
+
         if (!is_object($object)) {
             $e = new InvalidAclTargetObjectException('ACLs can only be attached to actual objects');
             $e->setTargetObject($object);

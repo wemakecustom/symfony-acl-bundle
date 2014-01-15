@@ -21,7 +21,15 @@ interface AclTargetIdentityFactoryInterface
 
     public function createClassFieldIdentity($className, $fieldName);
 
+    /**
+     * $object can also be specified as an array:
+     * [string (Class name), string (identifier)]
+     */
     public function createObjectIdentity($object);
 
+    /**
+     * $object can also be specified as an array:
+     * [string (Class name), string (identifier)]
+     */
     public function createObjectFieldIdentity($object, $fieldName);
 }
