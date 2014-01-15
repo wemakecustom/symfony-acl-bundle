@@ -14,6 +14,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode->canBeEnabled()->children()
             ->scalarNode('provider')->defaultValue('doctrine.orm')->end()
+            ->scalarNode('access_granting_strategy')->defaultValue('wmc.acl.voter.strategy.meta')->end()
             ->end()->end()
             ;
 

@@ -39,6 +39,8 @@ class WMCSymfonyAclExtension extends Extension
             $loader->load($config['provider'].'.yml');
         }
 
+        $container->setAlias('wmc.acl.voter.strategy', $config['access_granting_strategy']);
+
         if (0 === strncmp('doctrine', $config['provider'], 8)) {
             $this->loadDoctrineProvider($config['doctrine'], $container);
         }

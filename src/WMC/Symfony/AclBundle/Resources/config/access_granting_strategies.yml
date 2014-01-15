@@ -16,15 +16,6 @@ services:
         tags:
             - { name: monolog.logger, channel: security }
 
-    wmc.acl.voter.strategy.def:
-        class: %wmc.acl.voter.strategy.def.class%
-        arguments:
-            - @wmc.acl.provider
-            - @wmc.acl.provider.target_factory
-            - @?logger
-        tags:
-            - { name: monolog.logger, channel: security }
-
     wmc.acl.voter.strategy.plain:
         parent: wmc.acl.strategy.def
         class: %wmc.acl.voter.strategy.plain.class%
