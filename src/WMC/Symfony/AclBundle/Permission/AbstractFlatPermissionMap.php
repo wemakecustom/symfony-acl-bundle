@@ -2,7 +2,9 @@
 
 namespace WMC\Symfony\AclBundle\Permission;
 
-abstract class AbstractFlatPermissionMap implements PermissionMapInterface
+use WMC\Symfony\AclBundle\Model\AclPermissionMapInterface;
+
+abstract class AbstractFlatPermissionMap implements AclPermissionMapInterface
 {
     protected $attributes = array();
 

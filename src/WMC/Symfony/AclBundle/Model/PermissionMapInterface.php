@@ -1,8 +1,8 @@
 <?php
 
-namespace WMC\Symfony\AclBundle\Permission;
+namespace WMC\Symfony\AclBundle\Model;
 
-interface PermissionMapInterface
+interface AclPermissionMapInterface
 {
     /**
      * Returns an array of attributes provided by this permission.

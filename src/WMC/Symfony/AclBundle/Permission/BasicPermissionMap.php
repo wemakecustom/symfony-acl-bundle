@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Component\Security\Acl\Permission;
+namespace WMC\Symfony\AclBundle\Permission;
 
 class BasicPermissionMap extends AbstractFlatPermissionMap implements PermissionMapInterface
 {
