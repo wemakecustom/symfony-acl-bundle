@@ -133,7 +133,7 @@ class MutableProvider extends AbstractAclProvider implements AclMutableProviderI
      *
      * This method is idempotent.
      */
-    public function createAcl($grantee, $target, $permission, $flush = true)
+    public function createAce($grantee, $target, $permission, $flush = true)
     {
         $grantee = $this->extractSecurityIdentity($grantee);
         $target = $this->extractTargetIdentity($target);
@@ -184,7 +184,7 @@ class MutableProvider extends AbstractAclProvider implements AclMutableProviderI
      *
      * This method is idempotent.
      */
-     public function deleteAcl($grantee, $target, $permission, $flush = true)
+     public function deleteAce($grantee, $target, $permission, $flush = true)
      {
          $grantee = $this->extractSecurityIdentity($grantee);
          $target = $this->extractTargetIdentity($target);

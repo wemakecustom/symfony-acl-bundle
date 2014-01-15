@@ -14,12 +14,12 @@ interface MutableAclProviderInterface extends AclProviderInterface
      *
      * This method is idempotent.
      */
-    public function createAcl($grantee, $target, $permission);
+    public function createAce($grantee, $target, $permission);
 
     /**
      * Deletes an ACE
      *
      * This method is idempotent.
      */
-    public function deleteAcl($grantee, $target, $permission);
+    public function deleteAce($grantee, $target, $permission);
 }
