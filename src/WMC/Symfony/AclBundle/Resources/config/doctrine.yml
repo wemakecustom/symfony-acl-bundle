@@ -1,0 +1,50 @@
+parameters:
+    wmc.acl.provider.doctrine.object_manager.name: %doctrine.default_entity_manager%
+
+    wmc.acl.provider.doctrine.class: WMC\Symfony\AclBundle\Provider\Doctrine\MutableProvider
+    wmc.acl.provider.doctrine.entry.class: WMC\Symfony\AclBundle\Provider\Doctrine\Entry
+
+    wmc.acl.provider.doctrine.security_factory.class: WMC\Symfony\AclBundle\Provider\Doctrine\SecurityIdentityFactory
+    wmc.acl.provider.doctrine.security_factory.role.class: WMC\Symfony\AclBundle\Provider\Doctrine\RoleSecurityIdentity
+    wmc.acl.provider.doctrine.security_factory.user.class: WMC\Symfony\AclBundle\Provider\Doctrine\UserSecurityIdentity
+
+    wmc.acl.provider.doctrine.target_factory.class: WMC\Symfony\AclBundle\Provider\Doctrine\TargetIdentityFactory
+    wmc.acl.provider.doctrine.target_factory.class.class: WMC\Symfony\AclBundle\Provider\Doctrine\ClassTargetIdentity
+    wmc.acl.provider.doctrine.target_factory.class_field.class: WMC\Symfony\AclBundle\Provider\Doctrine\ClassFieldTargetIdentity
+    wmc.acl.provider.doctrine.target_factory.object.class: WMC\Symfony\AclBundle\Provider\Doctrine\ObjectTargetIdentity
+    wmc.acl.provider.doctrine.target_factory.object_field.class: WMC\Symfony\AclBundle\Provider\Doctrine\ObjectFieldTargetIdentit
+
+services:
+    wmc.acl.provider.doctrine:
+       class: %wmc.acl.provider.doctrine.class%
+       parent: wmc.acl.provider.def
+       arguments:
+           - @wmc.acl.provider.doctrine.security_factory
+           - @wmc.acl.provider.doctrine.target_factory
+           - @wmc.acl.provider.doctrine.object_manager
+           - %wmc.acl.provider.doctrine.entry.class%
+
+    wmc.acl.provider.doctrine.object_manager:
+        class: %wmc.acl.provider.doctrine.object_manager.class%
+        factory_service: %wmc.acl.provider.doctrine.registry_manager.service_name%
+        factory_method: getManager
+        arguments:
+           - %wmc.acl.provider.doctrine.object_manager.name%
+
+    wmc.acl.provider.doctrine.security_factory:
+        class: %wmc.acl.provider.doctrine.security_factory.class%
+        parent: wmc.acl.provider.security_factory
+        arguments:
+           - @wmc.acl.provider.doctrine.object_manager
+           - %wmc.acl.provider.doctrine.security_factory.role.class%
+           - %wmc.acl.provider.doctrine.security_factory.user.class%
+
+    wmc.acl.provider.doctrine.target_factory:
+        class: %wmc.acl.provider.doctrine.target_factory.class%
+        parent: wmc.acl.provider.target_factory
+        arguments:
+           - @wmc.acl.provider.doctrine.object_manager
+           - %wmc.acl.provider.doctrine.target_factory.class.class% 
+           - %wmc.acl.provider.doctrine.target_factory.class_field.class%
+           - %wmc.acl.provider.doctrine.target_factory.object.class% 
+           - %wmc.acl.provider.doctrine.target_factory.object_field.class%

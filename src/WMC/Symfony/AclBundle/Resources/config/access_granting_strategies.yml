@@ -1,0 +1,56 @@
+parameters:
+    wmc.acl.voter.strategy.def.class: WMC\Symfony\AclBundle\Voter\Strategy\AbstractAclAccessGrantingStrategy
+    wmc.acl.voter.strategy.plain.class: WMC\Symfony\AclBundle\Voter\Strategy\AclPlainAccessGrantingStrategy
+    wmc.acl.voter.strategy.meta.class: WMC\Symfony\AclBundle\Voter\Strategy\AclMetaAccessGrantingStrategy
+    wmc.acl.voter.strategy.field_erasure.class: WMC\Symfony\AclBundle\Voter\Strategy\AclFieldErasureAccessGrantingStrategy
+    wmc.acl.voter.strategy.inheritance.class: WMC\Symfony\AclBundle\Voter\Strategy\AclInheritanceAccessGrantingStrategy
+    wmc.acl.voter.strategy.complex.class: WMC\Symfony\AclBundle\Voter\Strategy\AclComplexAccessGrantingStrategy
+
+services:
+    wmc.acl.voter.strategy.def:
+        class: %wmc.acl.voter.strategy.def.class%
+        arguments:
+            - @wmc.acl.provider
+            - @wmc.acl.provider.target_factory
+            - @?logger
+        tags:
+            - { name: monolog.logger, channel: security }
+
+    wmc.acl.voter.strategy.def:
+        class: %wmc.acl.voter.strategy.def.class%
+        arguments:
+            - @wmc.acl.provider
+            - @wmc.acl.provider.target_factory
+            - @?logger
+        tags:
+            - { name: monolog.logger, channel: security }
+
+    wmc.acl.voter.strategy.plain:
+        parent: wmc.acl.strategy.def
+        class: %wmc.acl.voter.strategy.plain.class%
+        tags:
+            - { name: monolog.logger, channel: security }
+
+    wmc.acl.voter.strategy.meta:
+        parent: wmc.acl.strategy.def
+        class: %wmc.acl.voter.strategy.meta.class%
+        tags:
+            - { name: monolog.logger, channel: security }
+
+    wmc.acl.voter.strategy.field_erasure:
+        parent: wmc.acl.strategy.def
+        class: %wmc.acl.voter.strategy.field_erasure.class%
+        tags:
+            - { name: monolog.logger, channel: security }
+
+    wmc.acl.voter.strategy.inheritance:
+        parent: wmc.acl.strategy.def
+        class: %wmc.acl.voter.strategy.inheritance.class%
+        tags:
+            - { name: monolog.logger, channel: security }
+
+    wmc.acl.voter.strategy.complex:
+        parent: wmc.acl.strategy.def
+        class: %wmc.acl.voter.strategy.complex.class%
+        tags:
+            - { name: monolog.logger, channel: security }

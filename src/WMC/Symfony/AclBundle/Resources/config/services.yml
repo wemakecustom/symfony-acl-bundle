@@ -1,27 +1,39 @@
+imports:
+    - { resource: access_granting_strategies.yml }
+
 parameters:
-    wmc.acl.entity_manager.name: default
-    # wmc.acl.provider.class: WMC\Symfony\AclBundle\
+    wmc.acl.provider.def.class: WMC\Symfony\AclBundle\Provider\AbstractAclProvider
+    wmc.acl.provider.security_factory.class: WMC\Symfony\AclBundle\Domain\AclSecurityIdentityFactory
+    wmc.acl.provider.target_factory.class: WMC\Symfony\AclBundle\Domain\AclTargetIdentityFactory
+
+    wmc.acl.permission_map.class: WMC\Symfony\AclBundle\Permission\BasicPermissionMap
+
     wmc.acl.voter.class: WMC\Symfony\AclBundle\Voter\AclVoter
-    wmc.acl.permission.map.class: WMC\Symfony\AclBundle\Permission\BasicPermissionMap
 
 services:
-    # wmc.acl.provider:
-    #     class: %wmc.acl.provider.class%
-    #     arguments:
-    #         -
-    #     public: false
+    wmc.acl.provider.def:
+        class: %wmc.acl.provider.def.class%
+        abstract: true
+        arguments:
+            - @wmc.acl.provider.security_factory
+            - @wmc.acl.provider.target_factory
 
-    wmc.acl.permission.map:
-        class: %wmc.acl.permission.map.class%
-        public: false
+    wmc.acl.provider.security_factory:
+        class: %wmc.acl.provider.security_factory.class%
 
-    # wmc.acl.voter.class:
-    #     class: %wmc.acl.voter.basic_permissions%
-    #     arguments:
-    #         - @wmc.acl.provider
-    #         - @wmc.acl.permission.map
-    #         - @?logger
-    #     tags:
-    #         - { name: monolog.logger, channel: security }
-    #         - { name: security.voter, priority: 255 }
-    #     public: false
+    wmc.acl.provider.target_factory:
+        class: %wmc.acl.provider.target_factory.class%
+
+    wmc.acl.permission_map:
+        class: %wmc.acl.permission_map.class%
+
+    wmc.acl.voter:
+        class: %wmc.acl.voter%
+        arguments:
+            - @wmc.acl.provider
+            - @wmc.acl.permission_map
+            - @wmc.acl.voter.strategy
+            - @?logger
+        tags:
+            - { name: monolog.logger, channel: security }
+            - { name: security.voter, priority: 255 }

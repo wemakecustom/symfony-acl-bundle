@@ -1,0 +1,17 @@
+imports:
+    - { resource: doctrine.yml }
+
+parameters:
+    wmc.acl.provider.doctrine.registry_manager.service_name: doctrine
+
+    wmc.acl.provider.doctrine.object_manager.class: Doctrine\ORM\EntityManager
+    wmc.acl.provider.doctrine.object_manager.event_manager.class: Doctrine\Common\EventManager
+
+    wmc.acl.provider.doctrine.class: WMC\Symfony\AclBundle\Provider\Doctrine\ORM\MutableProvider
+    wmc.acl.provider.doctrine.security_factory.class: WMC\Symfony\AclBundle\Provider\Doctrine\ORM\SecurityIdentityFactory
+    wmc.acl.provider.doctrine.target_factory.class: WMC\Symfony\AclBundle\Provider\Doctrine\ORM\TargetIdentityFactory
+
+services:
+    wmc.acl.provider: @wmc.acl.provider.doctrine
+    wmc.acl.provider.security_factory: @wmc.acl.provider.doctrine.security_factory
+    wmc.acl.provider.target_factory: @wmc.acl.provider.doctrine.target_factory
