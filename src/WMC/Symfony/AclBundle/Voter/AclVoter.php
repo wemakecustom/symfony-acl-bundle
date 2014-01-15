@@ -6,33 +6,52 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 use Psr\Log\LoggerInterface as Logger;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface as Token;
-use WMC\Symfony\AclBundle\Model\AclProviderInterface as AclProvider;
+
 use WMC\Symfony\AclBundle\Permission\PermissionMapInterface as PermissionMap;
+
+use WMC\Symfony\AclBundle\Model\AclProviderInterface as AclProvider;
+use WMC\Symfony\AclBundle\Model\AclAccessGrantingStrategyInterface as AclAccessGrantingStrategy;
+use WMC\Symfony\AclBundle\Model\AclTargetIdentityInterface as AclTargetIdentity;
 
 /**
  * This voter can be used as a base class for implementing your own permissions.
+ *
+ * This voter supports PermissionMaps and Roles.
+ *
+ * ACL Inheritance strategy should be performed through the
+ * AccessGrantingStrategy.
  */
 class AclVoter implements VoterInterface
 {
     /**
      * @var AclProvider
      */
-    private $aclProvider;
+    protected $aclProvider;
 
     /**
      * @var PermissionMap
      */
-    private $permissionMap;
+    protected $permissionMap;
+
+    /**
+     * @var AclAccessGrantingStrategy
+     */
+    protected $strategy;
 
     /**
      * @var Logger
      */
-    private $logger;
+    protected $logger;
 
-    public function __construct(AclProvider $aclProvider, PermissionMap $permissionMap, Logger $logger = null)
+    /**
+     * It is your responsibility to ensure the AclAccessGrantingStrategy is
+     * consistent with the other dependencies injected here.
+     */
+    public function __construct(AclProvider $aclProvider, PermissionMap $permissionMap, AclAccessGrantingStrategy $strategy, Logger $logger = null)
     {
         $this->aclProvider   = $aclProvider;
         $this->permissionMap = $permissionMap;
+        $this->strategy      = $strategy;
         $this->logger        = $logger;
     }
 
@@ -61,15 +80,9 @@ class AclVoter implements VoterInterface
             return self::ACCESS_ABSTAIN;
         }
 
-        if (count($this->aclProvider->searchAces(array($token), array($targetIdentity), $permissions))) {
-            $this->debug('ACL found, permission granted. Voting to grant.');
+        $grantees = array_merge(array($token), $token->getRoles());
 
-            return self::ACCESS_GRANTED;
-        }
-
-        $this->debug('No ACL found. Voting to deny.');
-
-        return self::ACCESS_DENIED;
+        return $this->strategy->isGranted($this->aclProvider, $grantees, $targetIdentity, $permissions);
     }
 
     protected function debug($message)
