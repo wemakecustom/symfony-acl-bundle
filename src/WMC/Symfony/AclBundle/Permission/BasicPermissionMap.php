@@ -2,7 +2,9 @@
 
 namespace WMC\Symfony\AclBundle\Permission;
 
-class BasicPermissionMap extends AbstractFlatPermissionMap implements PermissionMapInterface
+use WMC\Symfony\AclBundle\Model\AclPermissionMapInterface;
+
+class BasicPermissionMap extends AbstractFlatPermissionMap implements AclPermissionMapInterface
 {
     const PERMISSION_VIEW        = 'VIEW';
     const PERMISSION_EDIT        = 'EDIT';
