@@ -31,13 +31,14 @@ class MutableProvider extends AbstractAclProvider implements AclMutableProviderI
     /**
      * @var array
      */
-    protected $writeCache = new \SplObjectStorage;
+    protected $writeCache;
 
     public function __construct(SecurityIdentityFactory $securityIdentityFactory, TargetIdentityFactory $targetIdentityFactory,
                                 ObjectManager $manager, $aclEntryClassname)
     {
         parent::__construct($securityIdentityFactory, $targetIdentityFactory);
 
+        $this->writeCache = new \SplObjectStorage;
         $this->om = $manager;
         $this->repository = $manager->getRepository($aclEntryClassname);
     }
