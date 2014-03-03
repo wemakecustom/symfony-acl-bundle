@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface as Voter;
  */
 class AclPlainAccessGrantingStrategy extends AbstractAclAccessGrantingStrategy
 {
-    public function isGranted($grantees, AclTargetIdentity &$target, $permissions, $fallbackVote = null)
+    public function isGranted($grantees, AclTargetIdentity $target, $permissions, $fallbackVote = null)
     {
         if (count($this->aclProvider->searchAces($grantees, array($target), $permissions))) {
             $this->debug('ACL found, permission granted. Voting to grant.');
