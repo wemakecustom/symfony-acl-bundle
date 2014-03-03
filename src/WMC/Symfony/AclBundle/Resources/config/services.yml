@@ -18,17 +18,20 @@ services:
             - @wmc.acl.provider.security_factory
             - @wmc.acl.provider.target_factory
 
-    wmc.acl.provider.security_factory:
+    wmc.acl.provider.security_factory.def:
         class: %wmc.acl.provider.security_factory.class%
 
-    wmc.acl.provider.target_factory:
+    wmc.acl.provider.target_factory.def:
         class: %wmc.acl.provider.target_factory.class%
+
+    wmc.acl.provider.security_factory: @wmc.acl.provider.security_factory.def
+    wmc.acl.provider.target_factory: @wmc.acl.provider.target_factory.def
 
     wmc.acl.permission_map:
         class: %wmc.acl.permission_map.class%
 
     wmc.acl.voter:
-        class: %wmc.acl.voter%
+        class: %wmc.acl.voter.class%
         arguments:
             - @wmc.acl.provider
             - @wmc.acl.permission_map

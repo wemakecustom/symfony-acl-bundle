@@ -17,31 +17,31 @@ services:
             - { name: monolog.logger, channel: security }
 
     wmc.acl.voter.strategy.plain:
-        parent: wmc.acl.strategy.def
+        parent: wmc.acl.voter.strategy.def
         class: %wmc.acl.voter.strategy.plain.class%
         tags:
             - { name: monolog.logger, channel: security }
 
     wmc.acl.voter.strategy.meta:
-        parent: wmc.acl.strategy.def
+        parent: wmc.acl.voter.strategy.def
         class: %wmc.acl.voter.strategy.meta.class%
         tags:
             - { name: monolog.logger, channel: security }
 
     wmc.acl.voter.strategy.field_erasure:
-        parent: wmc.acl.strategy.def
+        parent: wmc.acl.voter.strategy.def
         class: %wmc.acl.voter.strategy.field_erasure.class%
         tags:
             - { name: monolog.logger, channel: security }
 
     wmc.acl.voter.strategy.inheritance:
-        parent: wmc.acl.strategy.def
+        parent: wmc.acl.voter.strategy.def
         class: %wmc.acl.voter.strategy.inheritance.class%
         tags:
             - { name: monolog.logger, channel: security }
 
     wmc.acl.voter.strategy.complex:
-        parent: wmc.acl.strategy.def
+        parent: wmc.acl.voter.strategy.def
         class: %wmc.acl.voter.strategy.complex.class%
         tags:
             - { name: monolog.logger, channel: security }

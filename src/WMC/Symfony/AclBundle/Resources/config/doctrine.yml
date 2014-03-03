@@ -33,7 +33,7 @@ services:
 
     wmc.acl.provider.doctrine.security_factory:
         class: %wmc.acl.provider.doctrine.security_factory.class%
-        parent: wmc.acl.provider.security_factory
+        parent: wmc.acl.provider.security_factory.def
         arguments:
            - @wmc.acl.provider.doctrine.object_manager
            - %wmc.acl.provider.doctrine.security_factory.role.class%
@@ -41,7 +41,7 @@ services:
 
     wmc.acl.provider.doctrine.target_factory:
         class: %wmc.acl.provider.doctrine.target_factory.class%
-        parent: wmc.acl.provider.target_factory
+        parent: wmc.acl.provider.target_factory.def
         arguments:
            - @wmc.acl.provider.doctrine.object_manager
            - %wmc.acl.provider.doctrine.target_factory.class.class% 
