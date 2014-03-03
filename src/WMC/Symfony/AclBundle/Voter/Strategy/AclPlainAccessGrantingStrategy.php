@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface as Voter;
  *
  * $fallbackVote is thus ignored.
  */
-class AclPlainAccessGrantingStrategy extends AclAbstractAccessGrantingStrategy
+class AclPlainAccessGrantingStrategy extends AbstractAclAccessGrantingStrategy
 {
     public function isGranted($grantees, AclTargetIdentity &$target, $permissions, $fallbackVote = null)
     {

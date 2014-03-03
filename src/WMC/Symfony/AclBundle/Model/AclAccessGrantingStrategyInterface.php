@@ -6,5 +6,5 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface as Voter;
 
 interface AclAccessGrantingStrategyInterface
 {
-    public function isGranted($grantees, AclTargetIdentity &$target, $permissions, $fallbackVote = Voter::ACCESS_DENIED);
+    public function isGranted($grantees, AclTargetIdentityInterface &$target, $permissions, $fallbackVote = Voter::ACCESS_DENIED);
 }
