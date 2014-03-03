@@ -7,6 +7,8 @@ use Doctrine\Common\Persistence\ObjectRepository;
 
 use WMC\Symfony\AclBundle\Model\AclMutableProviderInterface;
 
+use WMC\Symfony\AclBundle\Provider\AbstractAclProvider;
+
 use WMC\Symfony\AclBundle\Model\AclTargetIdentityFactoryInterface as TargetIdentityFactory;
 use WMC\Symfony\AclBundle\Model\AclSecurityIdentityFactoryInterface as SecurityIdentityFactory;
 use WMC\Symfony\AclBundle\Model\AclSecurityIdentityInterface as SecurityIdentity;

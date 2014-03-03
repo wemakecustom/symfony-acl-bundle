@@ -7,7 +7,7 @@ namespace WMC\Symfony\AclBundle\Model;
  *
  * @author Mathieu Lemoine <mathieu@wemakecustom.com>
  */
-interface MutableAclProviderInterface extends AclProviderInterface
+interface AclMutableProviderInterface extends AclProviderInterface
 {
     /**
      * Inserts a new ACE
