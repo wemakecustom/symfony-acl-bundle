@@ -65,9 +65,9 @@ class AclTargetIdentityFactory implements AclTargetIdentityFactoryInterface
         }
 
         $e = new InvalidAclTargetObjectException(
-                                                 'For ACLs to be attached to an object, it must '.
-                                                 'implement AclSecurityObjectInterface, '
-                                                 .'have a getId() method, '.
+                                                 'For ACLs to be attached to an object, it must '
+                                                 .'implement AclSecurityObjectInterface, '
+                                                 .'have a getId() method, '
                                                  .'or have a __toString() method.'
                                                  );
         $e->setTargetObject($object);
