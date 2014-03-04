@@ -48,6 +48,10 @@ class WMCSymfonyAclExtension extends Extension
 
     protected function loadDoctrineProvider(array $config, ContainerBuilder $container)
     {
+        if ($container->hasParameter('wmc.acl.provider.doctrine.registry_manager.service_name')) {
+            $container->setAlias('wmc.acl.provider.doctrine.registry_manager', $container->getParameter('wmc.acl.provider.doctrine.registry_manager.service_name'));
+        }
+
         if (isset($config['manager'])) {
             $container->setAlias('wmc.acl.provider.doctrine.object_manager', $config['manager']);
         }

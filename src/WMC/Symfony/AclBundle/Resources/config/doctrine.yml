@@ -26,7 +26,7 @@ services:
 
     wmc.acl.provider.doctrine.object_manager:
         class: %wmc.acl.provider.doctrine.object_manager.class%
-        factory_service: %wmc.acl.provider.doctrine.registry_manager.service_name%
+        factory_service: wmc.acl.provider.doctrine.registry_manager
         factory_method: getManager
         arguments:
            - %wmc.acl.provider.doctrine.object_manager.name%
