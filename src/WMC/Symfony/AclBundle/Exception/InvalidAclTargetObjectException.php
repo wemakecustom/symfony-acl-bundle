@@ -13,6 +13,6 @@ class InvalidAclTargetObjectException extends \RuntimeException
 
     public function getTargetObject()
     {
-        return $this->targetObject;x
+        return $this->targetObject;
     }
 }
