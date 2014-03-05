@@ -14,7 +14,7 @@ class WMCSymfonyAclBundle extends Bundle
         parent::build($container);
 
         $mappings = array(
-                          realpath(__DIR__ . '/Resources/config/doctrine') => 'WMC\Symfony\AclBundle\Provider\Doctrine',
+                          realpath(__DIR__ . '/Resources/config/mappings/doctrine') => 'WMC\Symfony\AclBundle\Provider\Doctrine',
                           );
 
         $container->addCompilerPass(RegisterMappingsPass::createOrmMappingDriver($mappings));
