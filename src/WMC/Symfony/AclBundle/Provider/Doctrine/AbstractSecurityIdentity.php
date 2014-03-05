@@ -2,9 +2,9 @@
 
 namespace WMC\Symfony\AclBundle\Provider\Doctrine;
 
-use WMC\Symfony\AclBundle\Domain\AbstractAclSecurityIdentity;
+use WMC\Symfony\AclBundle\Domain\AclSecurityIdentity;
 
-abstract class AbstractSecurityIdentity extends AbstractAclSecurityIdentity
+abstract class AbstractSecurityIdentity extends AclSecurityIdentity
 {
     protected $id;
 
