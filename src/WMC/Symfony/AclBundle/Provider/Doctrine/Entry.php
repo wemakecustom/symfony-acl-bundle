@@ -1,44 +1,27 @@
 <?php
 
-namespace WMC\Symfony\AclBundle\Entity;
+namespace WMC\Symfony\AclBundle\Provider\Doctrine;
 
-use Doctrine\ORM\Mapping as ORM;
 use WMC\Symfony\AclBundle\Model\AclEntryInterface;
 
-/**
- * @ORM\Table(name="acl_entries")
- * @ORM\Entity
- */
-class AclEntry implements AclEntryInterface
+class Entry implements AclEntryInterface
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
-     *
      * @var integer
      */
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AclTargetIdentity", inversedBy="entries")
-     * @ORM\JoinColumn(nullable=false)
-     *
      * @var AclTargetIdentity
      */
-    private $target_identity;
+    private $targetIdentity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AclSecurityIdentity", inversedBy="entries")
-     * @ORM\JoinColumn(nullable=false)
-     *
      * @var AclSecurityIdentity
      */
-    private $security_identity;
+    private $securityIdentity;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     *
      * @var string
      */
     private $permission;
@@ -77,48 +60,48 @@ class AclEntry implements AclEntryInterface
     }
 
     /**
-     * Set target_identity
+     * Set targetIdentity
      *
      * @param  AclTargetIdentity $targetIdentity
      * @return AclEntry
      */
     public function setTargetIdentity(AclTargetIdentity $targetIdentity)
     {
-        $this->target_identity = $targetIdentity;
+        $this->targetIdentity = $targetIdentity;
 
         return $this;
     }
 
     /**
-     * Get target_identity
+     * Get targetIdentity
      *
      * @return AclTargetIdentity
      */
     public function getTargetIdentity()
     {
-        return $this->target_identity;
+        return $this->targetIdentity;
     }
 
     /**
-     * Set security_identity
+     * Set securityIdentity
      *
      * @param  AclSecurityIdentity $securityIdentity
      * @return AclEntry
      */
     public function setSecurityIdentity(AclSecurityIdentity $securityIdentity)
     {
-        $this->security_identity = $securityIdentity;
+        $this->securityIdentity = $securityIdentity;
 
         return $this;
     }
 
     /**
-     * Get security_identity
+     * Get securityIdentity
      *
      * @return AclSecurityIdentity
      */
     public function getSecurityIdentity()
     {
-        return $this->security_identity;
+        return $this->securityIdentity;
     }
 }
