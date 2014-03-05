@@ -62,6 +62,10 @@ class AclVoter implements VoterInterface
 
     public function vote(Token $token, $target, array $attributes)
     {
+        if (null === $target) {
+            return self::ACCESS_ABSTAIN;
+        }
+
         $targetIdentity = $this->aclProvider->extractTargetIdentity($target);
 
         if (!$this->supportsClass($targetIdentity->getClassName())) {
