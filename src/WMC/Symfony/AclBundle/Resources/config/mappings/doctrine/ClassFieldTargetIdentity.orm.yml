@@ -2,6 +2,6 @@ WMC\Symfony\AclBundle\Provider\Doctrine\ClassFieldTargetIdentity:
     type: entity
     manyToOne:
       class:
-         column: class_identity
+         joinColumn: { name: class_identity_id }
          targetEntity: ClassTargetIdentity
          cascade: [ persist, merge ]      

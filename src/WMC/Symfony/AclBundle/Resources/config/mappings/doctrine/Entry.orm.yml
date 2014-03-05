@@ -11,10 +11,10 @@ WMC\Symfony\AclBundle\Provider\Doctrine\Entry:
          length: 32
     manyToOne:
       targetIdentity:
-         column: target_identity
+         joinColumn: { name: target_identity_id }
          targetEntity: AbstractTargetIdentity
          cascade: [ persist, merge ]
       securityIdentity:
-         column: security_identity
+         joinColumn: { name: security_identity_id }
          targetEntity: AbstractSecurityIdentity
          cascade: [ persist, merge ]

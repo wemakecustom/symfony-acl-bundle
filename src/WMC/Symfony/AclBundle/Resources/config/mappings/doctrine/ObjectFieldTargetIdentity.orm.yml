@@ -2,10 +2,10 @@ WMC\Symfony\AclBundle\Provider\Doctrine\ObjectFieldTargetIdentity:
     type: entity
     manyToOne:
       object:
-         column: object_identity
+         joinColumn: { name: object_identity_id }
          targetEntity: ObjectTargetIdentity
          cascade: [ persist, merge ]      
       classField:
-         column: class_field_identity
+         joinColumn: { name: class_field_identity_id }
          targetEntity: ClassFieldTargetIdentity
          cascade: [ persist, merge ]      
