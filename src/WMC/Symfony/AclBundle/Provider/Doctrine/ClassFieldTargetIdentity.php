@@ -1,6 +1,6 @@
 <?php
 
-namespace WMC\Symfony\Provider\Doctrine;
+namespace WMC\Symfony\AclBundle\Provider\Doctrine;
 
 class ClassFieldTargetIdentity extends AbstractTargetIdentity
 {

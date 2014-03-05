@@ -1,6 +1,6 @@
 <?php
 
-namespace WMC\Symfony\Provider\Doctrine;
+namespace WMC\Symfony\AclBundle\Provider\Doctrine;
 
 use WMC\Symfony\AclBundle\Domain\AclTargetIdentity;
 
