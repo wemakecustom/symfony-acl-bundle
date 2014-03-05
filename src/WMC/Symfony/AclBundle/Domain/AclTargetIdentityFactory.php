@@ -3,8 +3,9 @@
 namespace WMC\Symfony\AclBundle\Domain;
 
 use WMC\Symfony\AclBundle\Model\AclTargetIdentityFactoryInterface;
-
 use WMC\Symfony\AclBundle\Model\AclTargetIdentityInterface;
+
+use WMC\Symfony\AclBundle\Exception\InvalidAclTargetObjectException;
 
 class AclTargetIdentityFactory implements AclTargetIdentityFactoryInterface
 {
