@@ -1,0 +1,22 @@
+WMC\Symfony\AclBundle\Provider\Doctrine\AbstractTargetIdentity:
+    type: entity
+    table: acl_target_identities
+    inheritanceType: single_table
+    discriminatorColumn: { name: kind }
+    id:
+      id:
+         type: integer
+         generator: { strategy: AUTO }
+    fields:
+      className:
+         type: string
+         length: 512
+         column: class_name
+      objectId:
+         type: string
+         length: 512
+         column: object_id
+      fieldName:
+         type: string
+         length: 32
+         column: field_name

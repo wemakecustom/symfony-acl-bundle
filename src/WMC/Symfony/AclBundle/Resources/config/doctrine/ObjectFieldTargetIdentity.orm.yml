@@ -1,0 +1,11 @@
+WMC\Symfony\AclBundle\Provider\Doctrine\ObjectFieldTargetIdentity:
+    type: entity
+    manyToOne:
+      object:
+         column: object_identity
+         targetEntity: ObjectTargetIdentity
+         cascade: [ persist, merge ]      
+      classField:
+         column: class_field_identity
+         targetEntity: ClassFieldTargetIdentity
+         cascade: [ persist, merge ]      

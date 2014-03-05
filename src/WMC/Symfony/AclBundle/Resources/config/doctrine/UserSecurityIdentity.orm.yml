@@ -1,0 +1,3 @@
+WMC\Symfony\AclBundle\Provider\Doctrine\UserSecurityIdentity:
+    type: entity
+   

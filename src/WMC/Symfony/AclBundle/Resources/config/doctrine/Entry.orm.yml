@@ -1,0 +1,20 @@
+WMC\Symfony\AclBundle\Provider\Doctrine\Entry:
+    type: entity
+    table: acl_entries
+    id:
+      id:
+         type: integer
+         generator: { strategy: AUTO }
+    fields:
+      permission:
+         type: string
+         length: 32
+    manyToOne:
+      targetIdentity:
+         column: target_identity
+         targetEntity: AbstractTargetIdentity
+         cascade: [ persist, merge ]
+      securityIdentity:
+         column: security_identity
+         targetEntity: AbstractSecurityIdentity
+         cascade: [ persist, merge ]

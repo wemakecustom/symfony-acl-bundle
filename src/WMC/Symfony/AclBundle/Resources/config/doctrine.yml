@@ -12,15 +12,13 @@ parameters:
     wmc.acl.provider.doctrine.target_factory.class.class: WMC\Symfony\AclBundle\Provider\Doctrine\ClassTargetIdentity
     wmc.acl.provider.doctrine.target_factory.class_field.class: WMC\Symfony\AclBundle\Provider\Doctrine\ClassFieldTargetIdentity
     wmc.acl.provider.doctrine.target_factory.object.class: WMC\Symfony\AclBundle\Provider\Doctrine\ObjectTargetIdentity
-    wmc.acl.provider.doctrine.target_factory.object_field.class: WMC\Symfony\AclBundle\Provider\Doctrine\ObjectFieldTargetIdentit
+    wmc.acl.provider.doctrine.target_factory.object_field.class: WMC\Symfony\AclBundle\Provider\Doctrine\ObjectFieldTargetIdentity
 
 services:
     wmc.acl.provider.doctrine:
        class: %wmc.acl.provider.doctrine.class%
        parent: wmc.acl.provider.def
        arguments:
-           - @wmc.acl.provider.doctrine.security_factory
-           - @wmc.acl.provider.doctrine.target_factory
            - @wmc.acl.provider.doctrine.object_manager
            - %wmc.acl.provider.doctrine.entry.class%
 

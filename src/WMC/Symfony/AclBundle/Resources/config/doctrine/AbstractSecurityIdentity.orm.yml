@@ -1,0 +1,18 @@
+WMC\Symfony\AclBundle\Provider\Doctrine\AbstractSecurityIdentity:
+    type: entity
+    table: acl_security_identities
+    inheritanceType: single_table
+    discriminatorColumn: { name: kind }
+    id:
+      id:
+         type: integer
+         generator: { strategy: AUTO }
+    fields:
+      className:
+         type: string
+         length: 512
+         column: class_name
+      objectId:
+         type: string
+         length: 512
+         column: object_id
