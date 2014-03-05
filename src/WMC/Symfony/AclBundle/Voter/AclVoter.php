@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Psr\Log\LoggerInterface as Logger;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface as Token;
 
-use WMC\Symfony\AclBundle\Permission\PermissionMapInterface as PermissionMap;
+use WMC\Symfony\AclBundle\Model\AclPermissionMapInterface as PermissionMap;
 
 use WMC\Symfony\AclBundle\Model\AclProviderInterface as AclProvider;
 use WMC\Symfony\AclBundle\Model\AclAccessGrantingStrategyInterface as AclAccessGrantingStrategy;
