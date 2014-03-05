@@ -7,9 +7,11 @@ namespace WMC\Symfony\AclBundle\Provider\Doctrine;
  */
 class UserSecurityIdentity extends AbstractSecurityIdentity
 {
+    protected $kind = self::KIND_USER;
+
     public function __construct($className, $identifier)
     {
-        parent::__construct($className, $identifier);
+        parent::__construct(self::KIND_USER, $className, $identifier);
     }
 
     public function getKind()

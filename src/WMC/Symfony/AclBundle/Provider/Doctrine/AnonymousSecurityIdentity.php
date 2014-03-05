@@ -9,9 +9,11 @@ use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
  */
 final class AnonymousSecurityIdentity extends AbstractSecurityIdentity
 {
+    protected $kind = self::KIND_ANONYMOUS;
+
     public function __construct()
     {
-        parent::__construct('Symfony\Component\Security\Core\Authentication\Token\AnonymousToken', null);
+        parent::__construct(self::KIND_ANONYMOUS 'Symfony\Component\Security\Core\Authentication\Token\AnonymousToken', null);
     }
 
     public function getKind()

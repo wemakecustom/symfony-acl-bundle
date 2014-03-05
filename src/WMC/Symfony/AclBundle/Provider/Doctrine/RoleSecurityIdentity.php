@@ -7,9 +7,11 @@ namespace WMC\Symfony\AclBundle\Provider\Doctrine;
  */
 class RoleSecurityIdentity extends AbstractSecurityIdentity
 {
+    protected $kind = self::KIND_ROLE;
+
     public function __construct($className, $identifier)
     {
-        parent::__construct($className, $identifier);
+        parent::__construct(self::KIND_ROLE, $className, $identifier);
     }
 
     public function getKind()
