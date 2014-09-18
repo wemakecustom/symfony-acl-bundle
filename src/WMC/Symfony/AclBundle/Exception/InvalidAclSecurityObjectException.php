@@ -13,6 +13,6 @@ class InvalidAclSecurityObjectException extends \RuntimeException
 
     public function getSecurityObject()
     {
-        return $this->securityObject;x
+        return $this->securityObject;
     }
 }
