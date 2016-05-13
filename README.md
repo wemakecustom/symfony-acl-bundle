@@ -1,3 +1,7 @@
+Currently not maintained
+========================
+
+
 Symfony Acl Bundle
 ==================
 
